@@ -5,7 +5,7 @@
 class Piece
 {
 public:
-	Piece(Coord position, char type, bool isBlack);
+	Piece(Coord position, char type, bool isWhite);
 
 	virtual ~Piece();
 
