@@ -58,7 +58,7 @@
             <mxPoint x="630" y="340.29" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MNrRNSJD-K1VeSJSYgDG-42" value="Rock" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="MNrRNSJD-K1VeSJSYgDG-42" value="Rook" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="70" y="540" width="160" height="34" as="geometry" />
         </mxCell>
         <mxCell id="MNrRNSJD-K1VeSJSYgDG-44" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="MNrRNSJD-K1VeSJSYgDG-42" vertex="1">

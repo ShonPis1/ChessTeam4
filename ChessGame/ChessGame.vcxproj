@@ -130,11 +130,13 @@
     <ClInclude Include="Coord.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="Rook.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Rook.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
