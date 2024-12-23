@@ -3,6 +3,7 @@
 class Coord
 {
 public:
+	Coord();
 	Coord(int x, int y);
 	~Coord();
 
