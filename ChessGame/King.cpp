@@ -2,6 +2,7 @@
 #include <cmath>
 
 King::King(const Coord& position, bool isWhite) : Piece(position, isWhite ? 'K' : 'k', isWhite) {}
+King::King(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'K' : 'k', isWhite) {}
 
 King::~King() {}
 

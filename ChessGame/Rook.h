@@ -6,6 +6,7 @@ class Rook : public Piece
 {
 public:
     Rook(const Coord& position, bool isWhite);
+    Rook(const int x, const int y, bool isWhite);
 
     ~Rook();
 

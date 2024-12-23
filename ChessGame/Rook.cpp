@@ -2,6 +2,7 @@
 #include <cmath>
 
 Rook::Rook(const Coord& position, bool isWhite) : Piece(position, isWhite ? 'R' : 'r', isWhite) {}
+Rook::Rook(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'R' : 'r', isWhite) {}
 
 Rook::~Rook() {}
 
