@@ -1,5 +1,6 @@
 #include "Coord.h"
 
+Coord::Coord() : _x(0), _y(0) {}
 Coord::Coord(int x, int y) : _x(x), _y(y) {}
 
 Coord::~Coord() {}
