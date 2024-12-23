@@ -5,6 +5,7 @@
 class Piece
 {
 public:
+	Piece();
 	Piece(const Coord& position, char type, bool isWhite);
 	Piece(const int x, const int y, char type, bool isWhite);
 

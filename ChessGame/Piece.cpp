@@ -1,5 +1,6 @@
 #include "Piece.h"
 
+Piece::Piece() : _type('#'), _isWhite(false){}
 Piece::Piece(const Coord& position, char type, bool isWhite) : _position(position), _type(type), _isWhite(isWhite) {}
 Piece::Piece(const int x, const int y, char type, bool isWhite) : _type(type), _isWhite(isWhite) 
 {
