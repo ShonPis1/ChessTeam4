@@ -11,3 +11,9 @@ const bool Piece::iswhite() const { return _isWhite; }
 Coord Piece::getPosition() const { return _position; }
 
 const char Piece::getType() const { return _type; }
+
+Piece Piece::operator=(const Piece& other)
+{
+	Piece temp(other.getPosition(), other.getType(), other.iswhite());
+	return temp;
+}
