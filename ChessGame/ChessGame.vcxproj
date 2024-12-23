@@ -140,6 +140,7 @@
     <ClCompile Include="Commmunicator.cpp" />
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="King.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="NullPiece.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Rook.cpp" />
