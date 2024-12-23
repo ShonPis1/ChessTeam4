@@ -1,5 +1,5 @@
 #pragma once
-#include "nullPiece.h"
+#include "NullPiece.h"
 #include "King.h"
 #include "Rook.h"
 
@@ -9,8 +9,8 @@ public:
 	Board();
 	~Board();
 
-	void updateBoard(Coord start, Coord end);
-	bool generalValidate(Coord start, Coord end);
+	void updateBoard(const Coord start, const Coord end);
+	bool generalValidate(const Coord start, const Coord end);
 
 protected:
 	Piece _boardStatus[8][8];
