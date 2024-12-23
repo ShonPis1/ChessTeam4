@@ -1,6 +1,6 @@
-#include "nullPiece.h" // check
+#include "nullPiece.h"
 
 
-nullPiece::nullPiece(const Coord& position) : Piece(position, '#', false) {}
+NullPiece::NullPiece(const Coord& position) : Piece(position, '#', false) {}
 
-nullPiece::~nullPiece() {}
+NullPiece::~NullPiece() {}

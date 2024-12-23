@@ -1,11 +1,11 @@
-#pragma once // check
+#pragma once
 
 #include "Piece.h"
 
-class nullPiece : public Piece
+class NullPiece : public Piece
 {
 public:
-    nullPiece(const Coord& position);
+    NullPiece(const Coord& position);
 
-    ~nullPiece();
+    ~NullPiece();
 };
