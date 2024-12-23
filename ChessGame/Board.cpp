@@ -68,27 +68,28 @@ bool Board::generalValidate(const Coord start, const Coord end)
 			}
 		}
 
-		rookOrQueen = false;
-		KingVisited = false;
-		for (int y = 0; y < 8; y++) 
+	}
+	rookOrQueen = false;
+	KingVisited = false;
+	for (int y = 0; y < 8; y++)
+	{
+		if (y == kingY)
 		{
-			if (y == kingY)
-			{
-				if (rookOrQueen) { throw(4); }
-				KingVisited = true;
+			if (rookOrQueen) { throw(4); }
+			KingVisited = true;
+		}
+		if (_boardStatus[kingX][y].getType() != '#')
+		{
+			rookOrQueen = false;
+			if (_boardStatus[kingX][y].getType() == (_isWhitePlayer ? 'r' : 'R')) { //enemy rook
+				if (KingVisited) { throw(4); }
+				rookOrQueen = true;
 			}
-			if (_boardStatus[kingX][y].getType() != '#')
-			{
-				rookOrQueen = false;
-				if (_boardStatus[kingX][y].getType() == (_isWhitePlayer ? 'r' : 'R')) { //enemy rook
-					if (KingVisited) { throw(4); }
-					rookOrQueen = true;
-				}
-				if (KingVisited) { //supposed to throw, otherwise not rook (or queen)
-					break;
-				}
+			if (KingVisited) { //supposed to throw, otherwise not rook (or queen)
+				break;
 			}
-
+		}
+	}
 		
 	if (!start.isValid() || !end.isValid()) { throw(5); }
 	if (start.getX() == end.getX() && start.getY() == end.getY()) { throw(7); }
