@@ -2,12 +2,24 @@
 
 Board::Board() // check
 {
-	Rook rook1();
+	King whiteKing(4, 7, true);
+	King blackKing(4, 0, false);
+	Rook rook1(7, 0, true);
+	Rook rook2(7, 7, true);
+	Rook rook3(0, 0, false);
+	Rook rook4(0, 7, false);
+
+	_boardStatus[4][7] = whiteKing;
+	_boardStatus[4][0] = blackKing;
+	_boardStatus[7][0] = rook1;
+	_boardStatus[7][7] = rook2;
+	_boardStatus[0][0] = rook3;
+	_boardStatus[0][7] = rook4;
 }
 
 Board::~Board() {}
 
-void Board::updateBoard(Coord start, Coord end)
+void Board::updateBoard(const Coord start, const Coord end)
 {
 	generalValidate(start, end);
 	NullPiece nullPiece(start);
@@ -16,7 +28,7 @@ void Board::updateBoard(Coord start, Coord end)
 	_isWhitePlayer = !_isWhitePlayer;
 }
 
-bool Board::generalValidate(Coord start, Coord end)
+bool Board::generalValidate(const Coord start, const Coord end)
 {
 	if (_boardStatus[start.getX()][start.getY()].iswhite() != _isWhitePlayer) { throw(2); }
 	if (_boardStatus[end.getX()][end.getY()].iswhite() == _isWhitePlayer && _boardStatus[end.getX()][end.getY()].getType() != '#') { throw(3); }
