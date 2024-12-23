@@ -26,6 +26,8 @@ public:
 	output: if the two coordinate are not the same or not*/
 	bool operator!=(const Coord& other) const;
 
+	bool operator==(const Coord& other) const;
+
 private:
 	// represents a position in the chess board 
 	int _x;

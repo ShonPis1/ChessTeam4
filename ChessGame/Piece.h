@@ -6,7 +6,6 @@ class Piece
 {
 public:
 	Piece(const Coord& position, char type, bool isWhite);
-
 	~Piece();
 
 	void setPosition(const Coord& newPosition);
