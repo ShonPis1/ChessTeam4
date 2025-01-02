@@ -1,7 +1,7 @@
 #include "King.h"
 #include <cmath>
 
-King::King(const Coord& position, bool isWhite) : Piece(position, isWhite ? 'K' : 'k', isWhite) {}
+King::King(int x, int y, bool isWhite) : Piece(x, y, isWhite ? 'K' : 'k', isWhite) {}
 
 King::~King() {}
 

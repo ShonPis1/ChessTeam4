@@ -5,7 +5,7 @@
 class Piece
 {
 public:
-	Piece(const Coord& position, char type, bool isWhite);
+	Piece(int x, int y, char type, bool isWhite);
 	~Piece();
 
 	void setPosition(const Coord& newPosition);
@@ -13,7 +13,6 @@ public:
 	const bool iswhite() const;
 	Coord getPosition() const;
 	const char getType() const;
-
 
 	/*checks if the movement of the piece is legal to reach the destination coordinate 
 	input: the destination coordinate 

@@ -1,6 +1,6 @@
 #pragma once
 
-class Coord
+class Coord 
 {
 public:
 	Coord(int x, int y);
@@ -21,11 +21,9 @@ public:
 	output: if the coordinate is valid of not */
 	bool isValid() const;
 
-	/*checks if two coordinate are not the same
+	/*checks if two coordinate are the same
 	input: another coordinate
-	output: if the two coordinate are not the same or not*/
-	bool operator!=(const Coord& other) const;
-
+	output: if the two coordinate are the same or not*/
 	bool operator==(const Coord& other) const;
 
 private:

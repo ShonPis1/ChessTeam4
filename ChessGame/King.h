@@ -5,7 +5,7 @@
 class King : public Piece
 {
 public:
-    King(const Coord& position, bool isWhite);
+    King(int x, int y, bool isWhite);
 
     ~King();
 

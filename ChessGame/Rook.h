@@ -5,7 +5,7 @@
 class Rook : public Piece
 {
 public:
-    Rook(const Coord& position, bool isWhite);
+    Rook(int x, int y, bool isWhite);
 
     ~Rook();
 
