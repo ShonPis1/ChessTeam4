@@ -5,6 +5,8 @@ Pawn::Pawn(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'P' :
 
 Pawn::~Pawn() {}
 
+bool Pawn::isMoveLegal(const Coord& destination) const { return false; }
+
 bool Pawn::isMoveLegal(const Coord& destination, Piece *boardStatus[8][8]) const {
 	int dx = std::abs(destination.getX() - _position.getX()); // delta x of the move coordinates 
 	int dy = destination.getY() - _position.getY();
