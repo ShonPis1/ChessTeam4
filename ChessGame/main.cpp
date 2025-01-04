@@ -40,17 +40,13 @@ int main(){
 
 
 	string msgFromGraphics = p.getMessageFromGraphics();
+	Coord* coords;
 	while (msgFromGraphics != "quit"){
-		cout << "Message from graphics: " << msgFromGraphics << endl;
+		coords = communicator.getNewMove(msgFromGraphics);
+		communicator.updateBoard(coords[0], coords[1]);
 
-
-
-		// should handle the string the sent from graphics
-		// according the protocol. Ex: e2e4           (move e2 to e4)
-
-		//communicator.updateBoard()
-		//// YOUR CODE
-		//strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		strcpy_s(msgToGraphics, boardStatus);
+		p.sendMessageToGraphics(msgToGraphics);
 
 		///******* JUST FOR EREZ DEBUGGING ******/
 		//int r = rand() % 10; // just for debugging......
@@ -66,6 +62,7 @@ int main(){
 		//msgFromGraphics = p.getMessageFromGraphics();
 	}
 
+	delete coords;
 	p.close();
 
 
