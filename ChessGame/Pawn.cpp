@@ -36,3 +36,7 @@ bool Pawn::isMoveLegal(const Coord& destination, Piece *boardStatus[8][8]) const
 	}
 	else { return false; }
 }
+
+Piece* Pawn::getCopy() const{
+	return new Pawn(*this);
+}

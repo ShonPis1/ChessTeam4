@@ -50,6 +50,7 @@ int Board::updateBoard(const Coord& start, const Coord& end) {
 	_boardStatus[end.getX()][end.getY()] = _boardStatus[start.getX()][start.getY()];
 	_boardStatus[start.getX()][start.getY()] = nullptr;
 
+	_boardStatus[end.getX()][end.getY()]->setPosition(end);
 	return gameCode;
 }
 

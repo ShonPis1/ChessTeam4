@@ -11,3 +11,7 @@ bool Bishop::isMoveLegal(const Coord& destination) const { //didnt checked if a 
 
     return (dx == dy); // Diognal lines, delta x is delta y
 }
+
+Piece* Bishop::getCopy() const{
+    return new Bishop(*this);
+}

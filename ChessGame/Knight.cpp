@@ -11,3 +11,7 @@ bool Knight::isMoveLegal(const Coord& destination) const { //didnt checked if a 
 
     return ((dx == 2 && dy == 1) || (dx == 1 && dy = 2); //Knight movement is on 1 axis move 1 and on the other move 2
 }
+
+Piece* Knight::getCopy() const{
+    return new Knight(*this);
+}

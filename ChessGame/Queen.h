@@ -10,4 +10,6 @@ public:
     ~Queen();
 
     bool isMoveLegal(const Coord& destination) const override;
+
+    Piece* getCopy() const override;
 };

@@ -10,4 +10,6 @@ public:
     ~Pawn();
 
     bool isMoveLegal(const Coord& destination, Piece *boardStatus[8][8]) const;
+
+    Piece* getCopy() const override;
 };
