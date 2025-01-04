@@ -33,11 +33,11 @@ Board::Board() : _isWhitePlayer(true) {
 
 	for (int i = 0; i < 8; i++)
 	{
-		_boardStatus[i][1] = new Pawn(1, i, true);
+		_boardStatus[1][i] = new Pawn(1, i, true);
 	}
 	for (int i = 0; i < 8; i++)
 	{
-		_boardStatus[i][7] = new Pawn(6, i, false);
+		_boardStatus[6][i] = new Pawn(6, i, false);
 	}
 
 
