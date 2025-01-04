@@ -133,6 +133,9 @@
     <ClInclude Include="Coord.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="named pipes\Pipe.h" />
+    <ClInclude Include="named pipes\stdafx.h" />
+    <ClInclude Include="named pipes\targetver.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Queen.h" />
@@ -150,6 +153,8 @@
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

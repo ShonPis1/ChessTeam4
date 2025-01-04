@@ -2,7 +2,7 @@
 
 char* Communicator::sendBoard(){
 	int index = 0;
-	for (int x = 0; x < 8; x++) {
+	for (int x = 7; x >= 0; x--) {
 		for (int y = 0; y < 8; y++) {
 			if (_boardStatus[x][y] == nullptr) {
 				boardString[index++] = '#';
