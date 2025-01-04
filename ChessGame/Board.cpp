@@ -31,10 +31,12 @@ int Board::updateBoard(const Coord& start, const Coord& end) {
 	int gameCode = generalValidate(start, end);
 	_isWhitePlayer = !_isWhitePlayer;
 
-	if (gameCode != 0 || gameCode != 1 || gameCode != 8) return gameCode;
+	if (gameCode != 0 && gameCode != 1 && gameCode != 8) return gameCode;
 
 	_boardStatus[end.getX()][end.getY()] = _boardStatus[start.getX()][start.getY()];
 	_boardStatus[start.getX()][start.getY()] = nullptr;
+
+	return gameCode;
 }
 
 int Board::generalValidate(const Coord& start, const Coord& end) const{
@@ -88,20 +90,18 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 
 
 	//checking for an available attack on the king
-	bool isInCheck = false;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (_boardStatus[i][j] != nullptr && _boardStatus[i][j]->iswhite() != _isWhitePlayer) {
 				//if the opponent can attack the king 
 				if (_boardStatus[i][j]->isMoveLegal(Coord(kingX, kingY)) && 
 					tempBoard.isPathClear(_boardStatus[i][j]->getPosition(), Coord(kingX, kingY))) {
-					isInCheck = true;
-					break;
+					return true;
 				}
 			}
 		}
 	}
-	return isInCheck;
+	return false;
 }
 
 bool Board::isPathClear(const Coord& start, const Coord& end) const {
