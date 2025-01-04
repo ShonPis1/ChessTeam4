@@ -1,28 +1,41 @@
-<<<<<<< HEAD
 #include "Communicator.h"
 
 int main()
 {
-	Communicator* communicator = new Communicator();
-	communicator->sendBoard();
+	Board board = Board();
+	Communicator communicator;
+	char* boardStatus = communicator.sendBoard();
 
-	while (true)
-	{
-		Coord* coords = communicator->getNewMove();
-		try
-		{
-			communicator->generalValidate(coords[0], coords[1]);
-		}
-		catch (int errorNum)
-		{
-			std::cout << "Error: #" << errorNum;
-		}
-
-		communicator->updateBoard(coords[0], coords[1]);
-		communicator->sendBoard();
+	for (int i = 0; i < 66; i++) {
+		std::cout << boardStatus[i];
 	}
+	std::cout << std::endl;
+
+	int index = 0;
+	for (int x = 0; x < 8; x++) {
+		for (int y = 0; y < 8; y++) {
+			std::cout << boardStatus[index++] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << boardStatus[0] << std::endl;
+	int code = board.updateBoard(Coord(0, 0), Coord(0, 1));
+	std::cout << code << std::endl;
+
+	boardStatus = communicator.sendBoard();
+	std::cout << boardStatus[1] << std::endl;
+
+	std::cout << std::endl;
+	index = 0;
+	for (int x = 0; x < 8; x++) {
+		for (int y = 0; y < 8; y++) {
+			std::cout << boardStatus[index++] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+
 
 	return 0;
 }
-=======
->>>>>>> 7e2efd9155e3d738cd46cedfd0d84953adfc008e
