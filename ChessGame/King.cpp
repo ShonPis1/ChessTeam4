@@ -11,3 +11,7 @@ bool King::isMoveLegal(const Coord& destination) const {
 
     return (dx <= 1 && dy <= 1); // king can move only one square in any direction
 }
+
+Piece* King::getCopy() const{
+    return new King(*this);
+}

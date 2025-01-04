@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ostream>
+#include <iostream>
 #include "King.h"
 #include "Rook.h"
 
@@ -8,6 +8,7 @@ class Board
 {
 public:
 	Board();
+	Board(const Board& other); //copy constructor
 	~Board();
 
 	/*updates the board status with a new move 
@@ -30,12 +31,11 @@ public:
 	output: if the move caused to a check or not */
 	bool isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurrentPlayer) const;
 
-	
 protected:
 	Piece* _boardStatus[8][8];
+	bool _isWhitePlayer;
 
 private:
-	bool _isWhitePlayer;
 	Piece* wKing; 
 	Piece* bKing;
 };
