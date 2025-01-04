@@ -4,6 +4,7 @@ class Coord
 {
 public:
 	Coord(int x, int y);
+	Coord();
 	~Coord();
 
 	// setters
