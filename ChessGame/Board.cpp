@@ -95,6 +95,12 @@ int Board::generalValidate(const Coord& start, const Coord& end) const{
 	if (_boardStatus[end.getX()][end.getY()] != nullptr &&
 		_boardStatus[end.getX()][end.getY()]->iswhite() == _isWhitePlayer) return 3;
 	
+	//ensures the move is legal: Pawn
+	if (_boardStatus[start.getX()][start.getY()]->getType() == 'P' || _boardStatus[start.getX()][start.getY()]->getType() == 'p')
+	{
+		Pawn temp(start.getX(), start.getY(), _boardStatus[start.getX()][start.getY()]->iswhite());
+		if (!temp.isMoveLegalPawn(end, _boardStatus) || !isPathClear(start, end)) return 6;
+	}
 		
 	//ensures the move is legal 
 	if (!_boardStatus[start.getX()][start.getY()]->isMoveLegal(end) ||

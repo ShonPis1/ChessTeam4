@@ -9,7 +9,7 @@ public:
 
     ~Pawn();
 
-    bool isMoveLegal(const Coord& destination, Piece* boardStatus[8][8]) const;
+    bool isMoveLegalPawn(const Coord& destination, Piece* const boardStatus[8][8]) const;
     bool isMoveLegal(const Coord& destination) const override;
 
     Piece* getCopy() const override;
