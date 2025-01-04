@@ -11,14 +11,13 @@ bool Pawn::isMoveLegal(const Coord& destination, Piece *boardStatus[8][8]) const
 	int dx = std::abs(destination.getX() - _position.getX()); // delta x of the move coordinates 
 	int dy = destination.getY() - _position.getY();
 																								
-	bool move = true;
 	if (_isWhite) // can only move forwards
 	{
-		if (dy <= 0) { return false; }
+		if (dy >= 0) { return false; }
 	}
 	else
 	{
-		if (dy >= 0) { return false; }
+		if (dy <= 0) { return false; }
 	}
 
 	dy = std::abs(dy);
