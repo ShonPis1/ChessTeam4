@@ -1,15 +1,14 @@
 #pragma once
 
 #include "Board.h"
-#include <iostream>
+using std::string;
 
 class Communicator : Board
 {
 public:
-	void sendBoard();
-	Coord* getNewMove();
+	char* sendBoard();
+	//Coord& getNewMove();
 
 private:
-	std::string protocolMsges;
-	
+	char boardString[66];
 };

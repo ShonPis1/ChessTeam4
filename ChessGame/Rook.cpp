@@ -11,3 +11,7 @@ bool Rook::isMoveLegal(const Coord& destination) const {
 
     return (dx == 0 || dy == 0); // rook can only move in straight lines
 }
+
+Piece* Rook::getCopy() const{
+    return new Rook(*this);
+}

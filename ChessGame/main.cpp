@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "Communicator.h"
 
 int main()
@@ -23,3 +24,5 @@ int main()
 
 	return 0;
 }
+=======
+>>>>>>> 7e2efd9155e3d738cd46cedfd0d84953adfc008e
