@@ -13,25 +13,25 @@ bool Pawn::isMoveLegal(const Coord& destination, Piece *boardStatus[8][8]) const
 																								
 	if (_isWhite) // can only move forwards
 	{
-		if (dy >= 0) { return false; }
+		if (dx <= 0) { return false; }
 	}
 	else
 	{
-		if (dy <= 0) { return false; }
+		if (dx >= 0) { return false; }
 	}
 
-	dy = std::abs(dy);
+	dx = std::abs(dx);
 
-	if (dy == 2) 
+	if (dx == 2) 
 	{
-		if (_position.getY() != 1 || _position.getY() != 6 || dx != 0) { return false; } // can only move 2 coord in first position
+		if (_position.getX() != 1 || _position.getX() != 6 || dy != 0) { return false; } // can only move 2 coord in first position
 	}
-	else if (dy != 1) { return false; } // have to move either 1 or 2
-	if (dx == 0) 
+	else if (dx != 1) { return false; } // have to move either 1 or 2
+	if (dy == 0) 
 	{
 		if (boardStatus[destination.getX()][destination.getY()] != 0) { return false; } //cant capture a piece using this move
 	}
-	else if (dx == 1)
+	else if (dy == 1)
 	{
 		if (boardStatus[destination.getX()][destination.getY()] == 0) { return false; } //have to capture a piece using this move
 	}
