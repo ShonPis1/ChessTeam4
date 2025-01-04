@@ -16,3 +16,12 @@ char* Communicator::sendBoard(){
 	boardString[65] = NULL;
 	return boardString;
 }
+
+Coord* Communicator::getNewMove(const std::string& move){
+	Coord* newMove = new Coord[2]; 
+
+	newMove[0] = Coord(move[1] - '1', move[0] - 'a');
+	newMove[1] = Coord(move[3] - '1', move[2] - 'a');
+
+	return newMove;
+}
