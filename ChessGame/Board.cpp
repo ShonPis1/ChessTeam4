@@ -70,7 +70,8 @@ int Board::generalValidate(const Coord& start, const Coord& end) const{
 	//ensures the destination doesn't contain a piece of the current player
 	if (_boardStatus[end.getX()][end.getY()] != nullptr &&
 		_boardStatus[end.getX()][end.getY()]->iswhite() == _isWhitePlayer) return 3;
-
+	
+		
 	//ensures the move is legal 
 	if (!_boardStatus[start.getX()][start.getY()]->isMoveLegal(end) ||
 		!isPathClear(start, end)) return 6;

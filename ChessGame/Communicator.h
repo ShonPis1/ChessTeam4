@@ -3,7 +3,7 @@
 #include "Board.h"
 using std::string;
 
-class Communicator : Board
+class Communicator : public Board
 {
 public:
 	char* sendBoard();

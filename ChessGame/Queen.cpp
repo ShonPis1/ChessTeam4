@@ -11,3 +11,7 @@ bool Queen::isMoveLegal(const Coord& destination) const {
 
 	return (dx == 0 || dy == 0 || dx == dy); // queen can only move in straight lines and diognals
 }
+
+Piece* Queen::getCopy() const {
+	return new Queen(*this);
+}

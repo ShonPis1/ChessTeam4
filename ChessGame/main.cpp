@@ -2,7 +2,6 @@
 
 int main()
 {
-	Board board = Board();
 	Communicator communicator;
 	char* boardStatus = communicator.sendBoard();
 
@@ -20,8 +19,8 @@ int main()
 	}
 
 	std::cout << boardStatus[0] << std::endl;
-	int code = board.updateBoard(Coord(0, 0), Coord(0, 1));
-	std::cout << code << std::endl;
+	communicator.updateBoard(Coord(0, 0), Coord(0, 1));
+
 
 	boardStatus = communicator.sendBoard();
 	std::cout << boardStatus[1] << std::endl;
