@@ -122,6 +122,7 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 	//simulating the move for change the board status 
 	tempBoard._boardStatus[end.getX()][end.getY()] = tempBoard._boardStatus[start.getX()][start.getY()];
 	tempBoard._boardStatus[start.getX()][start.getY()] = nullptr;
+	tempBoard._boardStatus[end.getX()][end.getY()]->setPosition(end);
 
 
 	Piece* king = (isCurrentPlayer == _isWhitePlayer) ? tempBoard.wKing : tempBoard.bKing;
