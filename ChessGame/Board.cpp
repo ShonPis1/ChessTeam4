@@ -132,6 +132,8 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 	}
 
 	//checking for an available attack on the king
+	bool isCheck = false;
+
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (tempBoard._boardStatus[i][j] != nullptr &&
@@ -143,26 +145,16 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 					if (temp.isMoveLegalPawn(king->getPosition(), tempBoard._boardStatus) &&
 						tempBoard.isPathClear(temp.getPosition(), king->getPosition()))
 					{
-
-						if (king->getPosition() == end)
-						{
-							king->setPosition(start);
-						}
-
-						return true;
+						isCheck = true;
+						break;
 					}
 				}else {
 					//ensures the move is legal 
 					if (tempBoard._boardStatus[i][j]->isMoveLegal(king->getPosition()) &&
-						tempBoard.isPathClear(Coord(i, j), king->getPosition())) 
+						tempBoard.isPathClear(Coord(i, j), king->getPosition()))
 					{
-
-						if (king->getPosition() == end)
-						{
-							king->setPosition(start);
-						}
-
-						return true;
+						isCheck = true;
+						break;
 					}
 				}
 			}
@@ -174,7 +166,7 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 		king->setPosition(start);
 	}
 
-	return false;
+	return isCheck;
 }
 
 bool Board::isPathClear(const Coord& start, const Coord& end) const {
