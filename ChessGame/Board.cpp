@@ -129,6 +129,11 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 
 	Piece* king = (isCurrentPlayer == _isWhitePlayer) ? tempBoard.wKing : tempBoard.bKing;
 
+	if (king->getPosition() == start)
+	{
+		king->setPosition(end);
+	}
+
 	//checking for an available attack on the king
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
@@ -140,16 +145,38 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 					Pawn temp(i, j, tempBoard._boardStatus[i][j]->iswhite());
 					if (temp.isMoveLegalPawn(king->getPosition(), tempBoard._boardStatus) &&
 						tempBoard.isPathClear(temp.getPosition(), king->getPosition()))
+					{
+
+						if (king->getPosition() == end)
+						{
+							king->setPosition(start);
+						}
+
 						return true;
+					}
 				}else {
 					//ensures the move is legal 
 					if (tempBoard._boardStatus[i][j]->isMoveLegal(king->getPosition()) &&
 						tempBoard.isPathClear(Coord(i, j), king->getPosition())) 
+					{
+
+						if (king->getPosition() == end)
+						{
+							king->setPosition(start);
+						}
+
 						return true;
+					}
 				}
 			}
 		}
 	}
+
+	if (king->getPosition() == end)
+	{
+		king->setPosition(start);
+	}
+
 	return false;
 }
 
