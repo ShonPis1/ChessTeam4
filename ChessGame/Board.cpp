@@ -178,8 +178,8 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 	if (std::abs(dx) == std::abs(dy)) {
 		int directionX = (dx > 0) ? 1 : -1;
 		int directionY = (dy > 0) ? 1 : -1;
-
-		for (int x = start.getX() + directionX, y = start.getY() + directionY; x > end.getX() && y > end.getY(); 
+		//                                                                           multiply both sides by negative one changes the sign
+		for (int x = start.getX() + directionX, y = start.getY() + directionY; x * directionX < end.getX() * directionX && y * directionY < end.getY() * directionY;
 			x += directionX, y += directionY) {
 				if (_boardStatus[x][y] != nullptr) return false;
 		}
