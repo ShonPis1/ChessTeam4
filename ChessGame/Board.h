@@ -15,6 +15,17 @@ public:
 	Board(const Board& other); //copy constructor
 	~Board();
 
+	// protocol:
+			// 0 - valid move
+			// 1 - valid move (you made chess)
+			// 2 - invalid move (not your player)
+			// 3 - invalid move (destination is not free)
+			// 4 - invalid move (chess will occur)
+			// 5 - invalid move (out of bounds)
+			// 6 - invalid move (illegal movement with piece)
+			// 7 - Invalid move - source and dest are equal
+			// 8 - check mate
+
 	/*updates the board status with a new move 
 	input: the start and the end positions of the new move
 	output: the game code that represents the result of the validation*/

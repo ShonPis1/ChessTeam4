@@ -155,6 +155,15 @@
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="chessGraphics\chessGraphics\Form1.cs" />
+    <None Include="chessGraphics\chessGraphics\Form1.Designer.cs" />
+    <None Include="chessGraphics\chessGraphics\pipe.cs" />
+    <None Include="chessGraphics\chessGraphics\Properties\AssemblyInfo.cs" />
+    <None Include="chessGraphics\chessGraphics\Properties\Resources.Designer.cs" />
+    <None Include="chessGraphics\chessGraphics\Properties\Settings.Designer.cs" />
+    <None Include="chessGraphics\chessGraphics\Square.cs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

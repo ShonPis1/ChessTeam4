@@ -93,4 +93,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="chessGraphics\chessGraphics\Form1.Designer.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\Form1.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\pipe.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\Square.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\Properties\AssemblyInfo.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\Properties\Resources.Designer.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="chessGraphics\chessGraphics\Properties\Settings.Designer.cs">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
