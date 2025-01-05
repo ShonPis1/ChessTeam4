@@ -1,22 +1,20 @@
 #pragma once
 
+#define BOARD_SIZE 8
+
 class Coord 
 {
 public:
-	Coord(int x, int y);
+	Coord(int y, int x);
 	Coord();
 	~Coord();
 
-	// setters
-	void setX(int x);
 	void setY(int y);
-
-	// getters
-	int getX() const;
+	void setX(int x);
+	
 	int getY() const;
-
-	// additional funcs
-
+	int getX() const;
+	
 	/*checks if the coordinate is within the limit of the board
 	input: none
 	output: if the coordinate is valid of not */
@@ -29,6 +27,6 @@ public:
 
 private:
 	// represents a position in the chess board 
-	int _x;
 	int _y;
+	int _x;
 };

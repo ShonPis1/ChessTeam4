@@ -1,15 +1,14 @@
 #include "King.h"
-#include <cmath>
 
-King::King(int x, int y, bool isWhite) : Piece(x, y, isWhite ? 'K' : 'k', isWhite) {}
+King::King(int y, int x, bool isWhite) : Piece(y, x, isWhite ? 'K' : 'k', isWhite) {}
 
 King::~King() {}
 
-bool King::isMoveLegal(const Coord& destination) const {
-    int dx = std::abs(destination.getX() - _position.getX()); // delta x of the move coordinates 
-    int dy = std::abs(destination.getY() - _position.getY()); // delta y of the move coordinates 
-
-    return (dx <= 1 && dy <= 1); // king can move only one square in any direction
+bool King::isMoveLegal(const Coord& dest) const {
+    int dy = std::abs(dest.getY() - _position.getY()); //delta y 
+    int dx = std::abs(dest.getX() - _position.getX()); //delta x 
+    
+    return (dy <= 1 && dx <= 1); //only one square in any direction
 }
 
 Piece* King::getCopy() const{

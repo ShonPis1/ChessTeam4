@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Board.h"
+
 using std::string;
 
-enum chessColumn{a = 0, b, c, d, e, f, g, h};
+#define EMPTY_SPACE_CHAR '#'
+#define BUFFER_SIZE 66
 
 class Communicator : public Board
 {
@@ -12,5 +14,5 @@ public:
 	Coord* getNewMove(const std::string& move);
 
 private:
-	char boardString[66];
+	char boardString[BUFFER_SIZE];
 };

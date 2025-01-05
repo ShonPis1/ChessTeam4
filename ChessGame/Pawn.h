@@ -5,12 +5,16 @@
 class Pawn : public Piece
 {
 public:
-    Pawn(const int x, const int y, bool isWhite);
+    Pawn(const int y, const int x, bool isWhite);
 
     ~Pawn();
 
-    bool isMoveLegalPawn(const Coord& destination, Piece* const boardStatus[8][8]) const;
-    bool isMoveLegal(const Coord& destination) const override;
+    /*checks if a move is legal by the special pawn movement rules
+    input: the destination coordinate, the current board satus
+    output: if the move is legal */
+    bool isMoveLegalPawn(const Coord& dest, Piece* const boardStatus[BOARD_SIZE][BOARD_SIZE]) const;
+
+    bool isMoveLegal(const Coord& dest) const override;
 
     Piece* getCopy() const override;
 };

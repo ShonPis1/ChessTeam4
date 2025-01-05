@@ -1,15 +1,15 @@
 #include "Queen.h"
 #include <cmath>
 
-Queen::Queen(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'Q' : 'q', isWhite) {}
+Queen::Queen(const int y, const int x, bool isWhite) : Piece(y, x, isWhite ? 'Q' : 'q', isWhite) {}
 
 Queen::~Queen() {}
 
-bool Queen::isMoveLegal(const Coord& destination) const { 
-	int dx = std::abs(destination.getX() - _position.getX()); // delta x of the move coordinates 
-	int dy = std::abs(destination.getY() - _position.getY()); // delta y of the move coordinates
+bool Queen::isMoveLegal(const Coord& dest) const {
+	int dy = std::abs(dest.getY() - _position.getY()); 
+	int dx = std::abs(dest.getX() - _position.getX()); 
 
-	return (dx == 0 || dy == 0 || dx == dy); // queen can only move in straight lines and diognals
+	return (dy == 0 || dx == 0 || dx == dy); //can only move in straight lines and diognals
 }
 
 Piece* Queen::getCopy() const {

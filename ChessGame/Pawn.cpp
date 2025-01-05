@@ -1,31 +1,29 @@
 #include "Pawn.h"
-#include <cmath>
 
-Pawn::Pawn(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'P' : 'p', isWhite) {}
+Pawn::Pawn(const int y, const int x, bool isWhite) : Piece(y, x, isWhite ? 'P' : 'p', isWhite) {}
 
 Pawn::~Pawn() {}
 
-bool Pawn::isMoveLegal(const Coord& destination) const { return true; }
+bool Pawn::isMoveLegal(const Coord& dest) const { return true; }
 
-bool Pawn::isMoveLegalPawn(const Coord& destination, Piece* const boardStatus[8][8]) const {
-	int dx = destination.getX() - _position.getX();
-	int dy = std::abs(destination.getY() - _position.getY()); // delta x of the move coordinates 
-	
-																								
-	if ((_isWhite && dx <= 0) || (!_isWhite && dx >= 0)) return false; // can only move forwards
+bool Pawn::isMoveLegalPawn(const Coord& dest, Piece* const boardStatus[BOARD_SIZE][BOARD_SIZE]) const {
+	int dy = dest.getY() - _position.getY();
+	int dx = std::abs(dest.getX() - _position.getX());  
+																				
+	if ((_isWhite && dy <= 0) || (!_isWhite && dy >= 0)) return false; //can move only forwards
 
-	dx = std::abs(dx);
+	dy = std::abs(dy);
 
-	if (dx == 2) {
-		if ((_isWhite && _position.getX() != 1) || (!_isWhite && _position.getX() != 6) || dy != 0) 
+	if (dy == 2) {  //can move 2 squares only at start position 
+		if ((_isWhite && _position.getY() != 1) || (!_isWhite && _position.getY() != 6) || dx != 0) 
 			return false;
 		
-	}else if (dx != 1)  return false; 
+	}else if (dy != 1)  return false; 
 
-	if (dy == 0) {
-		if (boardStatus[destination.getX()][destination.getY()] != nullptr)  return false; //cant capture a piece using this move
-	}else if (dy == 1){
-		if (boardStatus[destination.getX()][destination.getY()] == nullptr)  return false;  //have to capture a piece using this move
+	if (dx == 0) {
+		if (boardStatus[dest.getY()][dest.getX()] != nullptr)  return false; //cant capture a piece using this move
+	}else if (dx == 1){
+		if (boardStatus[dest.getY()][dest.getX()] == nullptr)  return false;  //have to capture a piece using this move
 	}else  return false; 
 
 	return true;

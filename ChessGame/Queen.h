@@ -5,11 +5,11 @@
 class Queen : public Piece
 {
 public:
-    Queen(const int x, const int y, bool isWhite);
+    Queen(const int y, const int x, bool isWhite);
 
     ~Queen();
 
-    bool isMoveLegal(const Coord& destination) const override;
+    bool isMoveLegal(const Coord& dest) const override;
 
     Piece* getCopy() const override;
 };

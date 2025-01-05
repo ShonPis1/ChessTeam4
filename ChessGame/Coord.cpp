@@ -1,8 +1,8 @@
 #include "Coord.h"
 
-Coord::Coord(int x, int y) : _x(x), _y(y) {}
+Coord::Coord(int y, int x) : _x(x), _y(y) {}
 
-Coord::Coord(){}
+Coord::Coord() {}
 
 Coord::~Coord() {}
 
@@ -15,7 +15,7 @@ int Coord::getX() const { return _x; }
 int Coord::getY() const { return _y; }
 
 bool Coord::isValid() const {
-	return _x >= 0 && _x < 8 && _y >= 0 && _y < 8;
+	return _x >= 0 && _x < BOARD_SIZE && _y >= 0 && _y < BOARD_SIZE;
 }
 
 bool Coord::operator==(const Coord& other) const {

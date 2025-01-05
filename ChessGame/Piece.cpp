@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-Piece::Piece(int x, int y, char type, bool isWhite) : _position(x, y), _type(type), _isWhite(isWhite) {}
+Piece::Piece(int y, int x, char type, bool isWhite) : _position(y, x), _type(type), _isWhite(isWhite) {}
 
 Piece::~Piece() {}
 

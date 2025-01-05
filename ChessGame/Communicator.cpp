@@ -2,12 +2,12 @@
 
 char* Communicator::sendBoard(){
 	int index = 0;
-	for (int x = 7; x >= 0; x--) {
-		for (int y = 0; y < 8; y++) {
-			if (_boardStatus[x][y] == nullptr) {
-				boardString[index++] = '#';
+	for (int y = 7; y >= 0; y--) {
+		for (int x = 0; x < BOARD_SIZE; x++) {
+			if (_boardStatus[y][x] == nullptr) {
+				boardString[index++] = EMPTY_SPACE_CHAR;
 			}else{
-				boardString[index++] = _boardStatus[x][y]->getType();
+				boardString[index++] = _boardStatus[y][x]->getType();
 			}	
 		}
 	}

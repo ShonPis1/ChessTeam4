@@ -5,11 +5,11 @@
 class Rook : public Piece
 {
 public:
-    Rook(int x, int y, bool isWhite);
+    Rook(int y, int x, bool isWhite);
 
     ~Rook();
 
-    bool isMoveLegal(const Coord& destination) const override;
+    bool isMoveLegal(const Coord& dest) const override;
 
     Piece* getCopy() const override;
 };

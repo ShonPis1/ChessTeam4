@@ -5,11 +5,11 @@
 class Knight : public Piece
 {
 public:
-    Knight(const int x, const int y, bool isWhite);
+    Knight(const int y, const int x, bool isWhite);
 
     ~Knight();
 
-    bool isMoveLegal(const Coord& destination) const override;
+    bool isMoveLegal(const Coord& dest) const override;
 
     Piece* getCopy() const override;
 };
