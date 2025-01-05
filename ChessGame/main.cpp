@@ -52,7 +52,7 @@ int main(){
 		p.sendMessageToGraphics(msgToGraphics);
 
 		msgFromGraphics = p.getMessageFromGraphics();
-
+		
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 

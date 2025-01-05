@@ -8,12 +8,12 @@ Board::Board() : _isWhitePlayer(true) {
 	}
 
 	_boardStatus[0][4] = new King(0, 4, true);
-	 wKing = _boardStatus[0][4];
+	wKing = _boardStatus[0][4];
 	_boardStatus[7][4] = new King(7, 4, false);
-	 bKing = _boardStatus[7][4];
+	bKing = _boardStatus[7][4];
 
-	 _boardStatus[0][3] = new Queen(0, 3, true);
-	 _boardStatus[7][3] = new Queen(7, 3, false);
+	_boardStatus[0][3] = new Queen(0, 3, true);
+	_boardStatus[7][3] = new Queen(7, 3, false);
 
 	_boardStatus[0][0] = new Rook(0, 0, true);  
 	_boardStatus[0][7] = new Rook(0, 7, true); 
@@ -39,8 +39,6 @@ Board::Board() : _isWhitePlayer(true) {
 	{
 		_boardStatus[6][i] = new Pawn(6, i, false);
 	}
-
-
 }
 
 Board::Board(const Board& other) : _isWhitePlayer(other._isWhitePlayer) {
@@ -160,7 +158,7 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 	//straight line
 	if (dx == 0) {
 		int directionY = (dy > 0) ? 1 : -1; //-1 if the direction is negative and 1 if positive 
-		//                                  multiply both sides by negative one changes the sign
+		//multiply both sides by negative one changes the sign
 		for (int y = start.getY() + directionY; y * directionY < end.getY() * directionY; y += directionY) {
 			if (_boardStatus[start.getX()][y] != nullptr) return false; 
 		}
@@ -168,7 +166,7 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 
 	if (dy == 0) {
 		int directionX = (dx > 0) ? 1 : -1;
-		//                                  multiply both sides by negative one changes the sign
+		//multiply both sides by negative one changes the sign
 		for (int x = start.getX() + directionX; x * directionX < end.getX() * directionX; x += directionX) {
 			if (_boardStatus[x][start.getY()] != nullptr) return false;
 		}
@@ -178,7 +176,8 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 	if (std::abs(dx) == std::abs(dy)) {
 		int directionX = (dx > 0) ? 1 : -1;
 		int directionY = (dy > 0) ? 1 : -1;
-		//                                                                           multiply both sides by negative one changes the sign
+
+		//multiply both sides by negative one changes the sign
 		for (int x = start.getX() + directionX, y = start.getY() + directionY; x * directionX < end.getX() * directionX && y * directionY < end.getY() * directionY;
 			x += directionX, y += directionY) {
 				if (_boardStatus[x][y] != nullptr) return false;
