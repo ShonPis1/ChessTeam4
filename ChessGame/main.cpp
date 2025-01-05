@@ -40,13 +40,18 @@ int main(){
 
 
 	string msgFromGraphics = p.getMessageFromGraphics();
+	Coord* coords;
 	while (msgFromGraphics != "quit"){
-		cout << "Message from graphics: " << msgFromGraphics << endl;
+		coords = communicator.getNewMove(msgFromGraphics);
+		int gameCode = communicator.updateBoard(coords[0], coords[1]);
+		communicator.sendBoard();
 
-		Coord* newMove = communicator.getNewMove(msgFromGraphics);
+		msgToGraphics[0] = '0' + gameCode;
+		msgToGraphics[1] = '\0';
 
-		communicator.updateBoard(newMove[0], newMove[1]);
-		boardStatus = communicator.sendBoard();
+		p.sendMessageToGraphics(msgToGraphics);
+
+		msgFromGraphics = p.getMessageFromGraphics();
 
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)

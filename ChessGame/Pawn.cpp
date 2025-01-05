@@ -5,14 +5,14 @@ Pawn::Pawn(const int x, const int y, bool isWhite) : Piece(x, y, isWhite ? 'P' :
 
 Pawn::~Pawn() {}
 
-bool Pawn::isMoveLegal(const Coord& destination) const { return false; }
+bool Pawn::isMoveLegal(const Coord& destination) const { return true; }
 
 bool Pawn::isMoveLegalPawn(const Coord& destination, Piece* const boardStatus[8][8]) const {
 	int dx = destination.getX() - _position.getX();
 	int dy = std::abs(destination.getY() - _position.getY()); // delta x of the move coordinates 
 	
 																								
-	if ((_isWhite && dx <= 0) || (_isWhite && dx >= 0)) return false; // can only move forwards
+	if ((_isWhite && dx <= 0) || (!_isWhite && dx >= 0)) return false; // can only move forwards
 
 	dx = std::abs(dx);
 

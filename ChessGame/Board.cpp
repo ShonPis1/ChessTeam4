@@ -67,10 +67,10 @@ Board::~Board() {
 
 int Board::updateBoard(const Coord& start, const Coord& end) {
 	int gameCode = generalValidate(start, end);
-	_isWhitePlayer = !_isWhitePlayer;
 
 	if (gameCode != 0 && gameCode != 1 && gameCode != 8) return gameCode;
-
+		
+	_isWhitePlayer = !_isWhitePlayer;
 	_boardStatus[end.getX()][end.getY()] = _boardStatus[start.getX()][start.getY()];
 	_boardStatus[start.getX()][start.getY()] = nullptr;
 
@@ -100,11 +100,11 @@ int Board::generalValidate(const Coord& start, const Coord& end) const{
 	{
 		Pawn temp(start.getX(), start.getY(), _boardStatus[start.getX()][start.getY()]->iswhite());
 		if (!temp.isMoveLegalPawn(end, _boardStatus) || !isPathClear(start, end)) return 6;
+	}else {
+		//ensures the move is legal 
+		if (!_boardStatus[start.getX()][start.getY()]->isMoveLegal(end) ||
+			!isPathClear(start, end)) return 6;
 	}
-		
-	//ensures the move is legal 
-	if (!_boardStatus[start.getX()][start.getY()]->isMoveLegal(end) ||
-		!isPathClear(start, end)) return 6;
 
 	//checks if the move make the current player's king be in check 
 	if (isInCheckAfterMove(start, end, true)) return 4;
@@ -134,10 +134,17 @@ bool Board::isInCheckAfterMove(const Coord& start, const Coord& end, bool isCurr
 			if (tempBoard._boardStatus[i][j] != nullptr &&
 				tempBoard._boardStatus[i][j]->iswhite() != king->iswhite()) {
 
-				//if the opponent can attack the king 
-				if (tempBoard._boardStatus[i][j]->isMoveLegal(king->getPosition()) &&
-					tempBoard.isPathClear(Coord(i, j), king->getPosition())) {
-					return true; 
+				//if the opponent can attack the king
+				if (tempBoard._boardStatus[i][j]->getType() == 'P' || tempBoard._boardStatus[i][j]->getType() == 'p'){
+					Pawn temp(i, j, tempBoard._boardStatus[i][j]->iswhite());
+					if (temp.isMoveLegalPawn(king->getPosition(), tempBoard._boardStatus) &&
+						tempBoard.isPathClear(temp.getPosition(), king->getPosition()))
+						return true;
+				}else {
+					//ensures the move is legal 
+					if (tempBoard._boardStatus[i][j]->isMoveLegal(king->getPosition()) &&
+						tempBoard.isPathClear(Coord(i, j), king->getPosition())) 
+						return true;
 				}
 			}
 		}
@@ -172,10 +179,11 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 		int directionX = (dx > 0) ? 1 : -1;
 		int directionY = (dy > 0) ? 1 : -1;
 
-		for (int x = start.getX() + directionX, y = start.getY() + directionY; x > end.getX() && y > end.getY();
+		for (int x = start.getX() + directionX, y = start.getY() + directionY; x > end.getX() && y > end.getY(); 
 			x += directionX, y += directionY) {
-			if (_boardStatus[x][y] != nullptr) return false;  
+				if (_boardStatus[x][y] != nullptr) return false;
 		}
+		
 	}
 
 	return true;
