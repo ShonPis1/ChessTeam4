@@ -30,7 +30,7 @@
             matBoard[i, j] = newBtn;
 
             newBtn.FlatAppearance.MouseOverBackColor = btnBoard.FlatAppearance.MouseOverBackColor;
-            newBtn.BackColor = isColBlack ? Color.Gray : Color.White;  //default square color
+            newBtn.BackColor = isColBlack ? Color.Gray : Color.White;  // Default square color
             newBtn.FlatAppearance.BorderColor = btnBoard.FlatAppearance.BorderColor;
             newBtn.FlatAppearance.BorderSize = btnBoard.FlatAppearance.BorderSize;
             newBtn.FlatStyle = btnBoard.FlatStyle;
@@ -47,11 +47,16 @@
 
             Controls.Add(newBtn);
 
-            // Example of how to change square colors if necessary
-            // For example, you can change color of a square that contains a piece of your color
+            // Change color for player's pieces
             if (_boardStatus[i][j] != null && _boardStatus[i][j].iswhite() == isCurPlWhite)
             {
                 newBtn.BackColor = Color.LightBlue;  // Change color of squares with your pieces
+            }
+
+            // Optionally highlight squares based on check or checkmate
+            if (isInCheck(i, j)) // Assume a method isInCheck exists
+            {
+                newBtn.BackColor = Color.Red;  // Change color of squares under check
             }
 
             currentWidth += btnBoard.Width;
