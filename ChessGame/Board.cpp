@@ -160,16 +160,16 @@ bool Board::isPathClear(const Coord& start, const Coord& end) const {
 	//straight line
 	if (dx == 0) {
 		int directionY = (dy > 0) ? 1 : -1; //-1 if the direction is negative and 1 if positive 
-
-		for (int y = start.getY() + directionY; y < end.getY(); y++) { 
+		//                                  multiply both sides by negative one changes the sign
+		for (int y = start.getY() + directionY; y * directionY < end.getY() * directionY; y += directionY) {
 			if (_boardStatus[start.getX()][y] != nullptr) return false; 
 		}
 	}
 
 	if (dy == 0) {
 		int directionX = (dx > 0) ? 1 : -1;
-
-		for (int x = start.getX() + directionX; x < end.getX(); x++) {
+		//                                  multiply both sides by negative one changes the sign
+		for (int x = start.getX() + directionX; x * directionX < end.getX() * directionX; x += directionX) {
 			if (_boardStatus[x][start.getY()] != nullptr) return false;
 		}
 	}
