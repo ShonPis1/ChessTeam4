@@ -43,7 +43,6 @@ int main(){
 	Coord* coords;
 	while (msgFromGraphics != "quit"){
 		coords = communicator.getNewMove(msgFromGraphics);
-<<<<<<< HEAD
 		int gameCode = communicator.updateBoard(coords[0], coords[1]);
 		communicator.sendBoard();
 
@@ -60,12 +59,6 @@ int main(){
 		//communicator.updateBoard()
 		//// YOUR CODE
 		//strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
-=======
-		communicator.updateBoard(coords[0], coords[1]);
-
-		strcpy_s(msgToGraphics, boardStatus);
-		p.sendMessageToGraphics(msgToGraphics);
->>>>>>> aef5d2a57a859d73d5c47985aa6e9a9c95ccc570
 
 		///******* JUST FOR EREZ DEBUGGING ******/
 		//int r = rand() % 10; // just for debugging......
@@ -81,7 +74,6 @@ int main(){
 		//msgFromGraphics = p.getMessageFromGraphics();
 	}
 
-	delete coords;
 	p.close();
 
 
