@@ -2,6 +2,8 @@
 
 Coord::Coord(int x, int y) : _x(x), _y(y) {}
 
+Coord::Coord(){}
+
 Coord::~Coord() {}
 
 void Coord::setX(int x) { _x = x; }
