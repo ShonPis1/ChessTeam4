@@ -187,3 +187,4 @@ bool Board::isPathClear(const Coord& src, const Coord& dest) const {
 	}
 	return true;
 }
+
