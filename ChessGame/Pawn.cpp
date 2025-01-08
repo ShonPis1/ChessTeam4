@@ -15,7 +15,7 @@ bool Pawn::isMoveLegalPawn(const Coord& dest, Piece* const boardStatus[BOARD_SIZ
 	dy = std::abs(dy);
 
 	if (dy == 2) {  //can move 2 squares only at start position 
-		if ((_isWhite && _position.getY() != 1) || (!_isWhite && _position.getY() != 6) || dx != 0) 
+		if (_didMoved) 
 			return false;
 		
 	}else if (dy != 1)  return false; 

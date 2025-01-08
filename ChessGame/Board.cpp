@@ -64,6 +64,44 @@ Board::~Board() {
 }
 
 int Board::updateBoard(const Coord& src, const Coord& dest) {
+	if (isCasteling(src, dest))
+	{
+		int gameCode = 0;
+
+		int dx = dest.getX() - src.getX();
+		int diractionXSrc;
+		int diractionXDest;
+		if (dx > 0)
+		{
+			diractionXSrc = 1;
+			diractionXDest = 1;
+		}
+		else
+		{
+			diractionXSrc = -1;
+			diractionXDest = -2;
+		}
+
+		_isWhitePlayer = !_isWhitePlayer;
+
+		_boardStatus[src.getY()][src.getX() + diractionXSrc] = _boardStatus[dest.getY()][dest.getX() + diractionXDest];
+		_boardStatus[dest.getY()][dest.getX() + diractionXDest] = nullptr;
+		_boardStatus[src.getY()][src.getX() + diractionXSrc]->setPosition(Coord(src.getY(), src.getX() + diractionXSrc));
+
+		if (isMate(src, dest)) 
+			gameCode = 8;
+
+		else if (isInCheckAfterMove(wKing->getPosition(), Coord(src.getY(), src.getX() + 2 * diractionXSrc), false))
+			gameCode = 1;
+
+
+		_boardStatus[src.getY()][src.getX() + 2 * diractionXSrc] = _boardStatus[src.getY()][src.getX()];
+		_boardStatus[src.getY()][src.getX()] = nullptr;
+		_boardStatus[src.getY()][src.getX() + 2 * diractionXSrc]->setPosition(Coord(src.getY(), src.getX() + 2 * diractionXSrc));
+
+		return 0;
+	}
+
 	int gameCode = generalValidate(src, dest);
 
 	if (gameCode != 0 && gameCode != 1 && gameCode != 8) return gameCode;
@@ -73,6 +111,7 @@ int Board::updateBoard(const Coord& src, const Coord& dest) {
 	_boardStatus[src.getY()][src.getX()] = nullptr;
 
 	_boardStatus[dest.getY()][dest.getX()]->setPosition(dest);
+
 	return gameCode;
 }
 
@@ -102,11 +141,12 @@ int Board::generalValidate(const Coord& src, const Coord& dest) const{
 
 	//checks if the move make the current player's king be in check 
 	if (isInCheckAfterMove(src, dest, true)) return 4;
+	
+	if (isMate(src, dest)) return 8;
 
 	//checks if the move make the opponent's king be in check 
 	if (isInCheckAfterMove(src, dest, false)) return 1;
 
-	//code 8 for checkmate.....................................................................
 
 	return 0;
 }
@@ -121,6 +161,7 @@ bool Board::isInCheckAfterMove(const Coord& src, const Coord& dest, bool isCurre
 	tempBoard._boardStatus[dest.getY()][dest.getX()]->setPosition(dest);
 
 	Piece* king = (isCurrentPlayer == _isWhitePlayer) ? tempBoard.wKing : tempBoard.bKing;
+	bool didKingMoved = king->didMoved();
 	if (king->getPosition() == src) king->setPosition(dest);
 	
 
@@ -149,9 +190,111 @@ bool Board::isInCheckAfterMove(const Coord& src, const Coord& dest, bool isCurre
 		}
 	}
 
-	if (king->getPosition() == dest) king->setPosition(src);
+	if (king->getPosition() == dest)
+	{
+		king->setPosition(src);
+		king->setDidMoved(didKingMoved);
+	}
+
 	return isCheck;
 }
+
+bool Board::isCasteling(const Coord& src, const Coord& dest) const
+{
+	// wheather king-side or queen-side casteling
+	int dx = dest.getX() - src.getX();
+	int diractionX;
+	dx > 0 ? diractionX = 1 : diractionX = -2;
+
+	// if its king and it same color rook
+	if (_boardStatus[src.getY()][src.getX()] != nullptr && _boardStatus[dest.getY()][dest.getX() + diractionX] != nullptr && // is a Piece
+		!_boardStatus[src.getY()][src.getX()]->didMoved() && !_boardStatus[dest.getY()][dest.getX() + diractionX]->didMoved() // pieces didnt moved
+		&& isPathClear(src, dest) && //there is nothing in between 
+		// if its king and it same color rook
+		((_boardStatus[src.getY()][src.getX()]->getType() == 'k' && _boardStatus[dest.getY()][dest.getX() + diractionX]->getType() == 'r') ||
+		 (_boardStatus[src.getY()][src.getX()]->getType() == 'K' && _boardStatus[dest.getY()][dest.getX() + diractionX]->getType() == 'R')))
+			return true;
+	return false;
+}
+
+bool Board::isMate(const Coord& src, const Coord& dest) const
+{
+	for (int x = -1; x <= 1; x++)
+	{
+		for (int y = -1; y <= 1; y++)
+		{
+			//ensures the destination doesn't contain a piece of the current player and would still be in check
+			if (!(_boardStatus[dest.getY()][dest.getX()] != nullptr &&
+				_boardStatus[dest.getY()][dest.getX()]->iswhite() == _isWhitePlayer) &&
+				!(isInCheckAfterMove(src, dest, false)))
+				return false;
+		}
+	}
+
+	//checks for blocking:
+	
+	Piece* king = (!_isWhitePlayer) ? wKing : bKing;
+			
+	int dy = king->getPosition().getY() - dest.getY();
+	int dx = king->getPosition().getX() - dest.getX();
+
+	//straight line
+	if (dy == 0) {
+		int directionX = (dx > 0) ? 1 : -1;
+		for (int i = king->getPosition().getX() + directionX; i * directionX < dest.getX() * directionX; i += directionX) {
+			for (int y = 0; y < BOARD_SIZE; y++) {
+				for (int x = 0; x < BOARD_SIZE; x++) {
+					if (_boardStatus[y][x] != nullptr &&
+						_boardStatus[y][x]->iswhite() == king->iswhite() &&
+						_boardStatus[y][x]->getType() != king->getType() &&
+						_boardStatus[y][x]->isMoveLegal(Coord(king->getPosition().getY(), i)) &&
+						isPathClear(Coord(y, x), Coord(king->getPosition().getY(), i)))
+							return false;
+				}
+			}
+		}
+	}
+
+	if (dx == 0) {
+		int directionY = (dy > 0) ? 1 : -1;
+		for (int i = king->getPosition().getY() + directionY; i * directionY < dest.getY() * directionY; i += directionY) {
+			for (int y = 0; y < BOARD_SIZE; y++) {
+				for (int x = 0; x < BOARD_SIZE; x++) {
+					if (_boardStatus[y][x] != nullptr &&
+						_boardStatus[y][x]->iswhite() == king->iswhite() &&
+						_boardStatus[y][x]->getType() != king->getType() &&
+						_boardStatus[y][x]->isMoveLegal(Coord(i, king->getPosition().getX())) &&
+						isPathClear(Coord(y, x), Coord(i, king->getPosition().getX())))
+							return false;
+				}
+			}
+		}
+	}
+
+
+	//diagonal lines
+	if (std::abs(dy) == std::abs(dx)) {
+		int directionY = (dy > 0) ? 1 : -1;
+		int directionX = (dx > 0) ? 1 : -1;
+
+		for (int y1 = king->getPosition().getY() + directionY, x1 = king->getPosition().getX() + directionX; y1 * directionY < dest.getY() * directionY &&
+			x1 * directionX < dest.getX() * directionX; y1 += directionY, x1 += directionX) {
+			for (int y2 = 0; y2 < BOARD_SIZE; y2++) {
+				for (int x2 = 0; x2 < BOARD_SIZE; x2++) {
+					if (_boardStatus[y2][x2] != nullptr &&
+						_boardStatus[y2][x2]->iswhite() == king->iswhite() &&
+						_boardStatus[y2][x2]->getType() != king->getType() &&
+						_boardStatus[y2][x2]->isMoveLegal(Coord(y1, x1)) &&
+						isPathClear(Coord(y2, x2), Coord(y1, x2)))
+							return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}
+
 
 bool Board::isPawn(const char sign) const { return (sign == 'P' || sign == 'p');  }
 

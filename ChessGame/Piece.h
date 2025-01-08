@@ -10,8 +10,10 @@ public:
 	~Piece();
 
 	void setPosition(const Coord& newPosition);
+	void setDidMoved(bool didMoved);
 	virtual Piece* getCopy() const = 0;
 
+	const  bool didMoved() const;
 	const bool iswhite() const;
 	Coord getPosition() const;
 	const char getType() const;
@@ -22,6 +24,7 @@ public:
 	virtual bool isMoveLegal(const Coord& dest) const = 0;
 
 protected:
+	bool _didMoved;
 	bool _isWhite;
 	Coord _position;
 	char _type;

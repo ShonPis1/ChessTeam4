@@ -5,6 +5,7 @@
 class Rook : public Piece
 {
 public:
+
     Rook(int y, int x, bool isWhite);
 
     ~Rook();

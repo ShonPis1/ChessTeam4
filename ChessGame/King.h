@@ -5,6 +5,7 @@
 class King : public Piece
 {
 public:
+
     King(int y, int x, bool isWhite);
 
     ~King();

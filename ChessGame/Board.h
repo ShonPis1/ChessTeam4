@@ -56,6 +56,16 @@ private:
 	output: if the move caused to a check or not */
 	bool isInCheckAfterMove(const Coord& src, const Coord& dest, bool isCurrentPlayer) const;
 
+	/*checks if current move is casteling
+	input: src and dst of move
+	output: wheather its a casteling move or not*/
+	bool isCasteling(const Coord& src, const Coord& dest) const;
+
+	/*checks if current move is makes a check which the player cant block/escape
+	input: src and dst of move
+	output: wheather its a mate*/
+	bool isMate(const Coord& src, const Coord& dest) const;
+
 	/*checks if piece is a pawn 
 	input: the current piece 
 	output: if the piece is pawn or not */

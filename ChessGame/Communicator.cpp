@@ -14,6 +14,7 @@ char* Communicator::sendBoard(){
 
 	boardString[64] = _isWhitePlayer ? '0' : '1';
 	boardString[65] = NULL;
+	std::cout << boardString << std::endl;
 	return boardString;
 }
 
