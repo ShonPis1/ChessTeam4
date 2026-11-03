@@ -7,7 +7,7 @@ class Piece
 {
 public:
 	Piece(int y, int x, char type, bool isWhite);
-	~Piece();
+	virtual ~Piece();
 
 	void setPosition(const Coord& newPosition);
 	void setDidMoved(bool didMoved);

@@ -51,8 +51,16 @@ Board::Board(const Board& other) : _isWhitePlayer(other._isWhitePlayer) {
 			}
 		}
 	}
-	wKing = other.wKing;
-	bKing = other.bKing;
+	//the kings must point at this board's own copies, not at the other board's pieces
+	wKing = nullptr;
+	bKing = nullptr;
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			if (_boardStatus[i][j] == nullptr) continue;
+			if (_boardStatus[i][j]->getType() == 'K') wKing = _boardStatus[i][j];
+			else if (_boardStatus[i][j]->getType() == 'k') bKing = _boardStatus[i][j];
+		}
+	}
 }
 
 Board::~Board() {
@@ -64,6 +72,10 @@ Board::~Board() {
 }
 
 int Board::updateBoard(const Coord& src, const Coord& dest) {
+	//must be checked before isCasteling, which indexes the board
+	if (!src.isValid() || !dest.isValid()) return 5;
+	if (src == dest) return 7;
+
 	if (isCasteling(src, dest))
 	{
 		int gameCode = 0;
@@ -205,6 +217,10 @@ bool Board::isCasteling(const Coord& src, const Coord& dest) const
 	int dx = dest.getX() - src.getX();
 	int diractionX;
 	dx > 0 ? diractionX = 1 : diractionX = -2;
+
+	//the rook's square must be on the board
+	if (!src.isValid() || !dest.isValid() || dest.getX() + diractionX < 0 || dest.getX() + diractionX >= BOARD_SIZE)
+		return false;
 
 	// if its king and it same color rook
 	if (_boardStatus[src.getY()][src.getX()] != nullptr && _boardStatus[dest.getY()][dest.getX() + diractionX] != nullptr && // is a Piece

@@ -7,7 +7,6 @@ using std::endl;
 using std::string;
 
 int main(){
-	srand(time_t(NULL));
 	Pipe p;
 
 	bool isConnect = p.connect();
@@ -38,6 +37,7 @@ int main(){
 	while (msgFromGraphics != "quit"){
 		coords = communicator.getNewMove(msgFromGraphics);
 		int gameCode = communicator.updateBoard(coords[0], coords[1]);
+		delete[] coords;
 		communicator.sendBoard();
 
 		msgToGraphics[0] = '0' + gameCode;

@@ -13,6 +13,7 @@ class Board
 public:
 	Board();
 	Board(const Board& other); //copy constructor
+	Board& operator=(const Board&) = delete; //the board owns raw pointers, so copying by assignment is not allowed
 	~Board();
 
 	// protocol:
